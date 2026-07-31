@@ -116,106 +116,27 @@ showScreen("giftScreen");
 GIFT  ROTATION
 ==================================*/
 
-const gift3D = document.getElementById("gift3D");
-gift3D.addEventListener("click",()=>{
+/*==================================
+PREMIUM GIFT BOX V4
+==================================*/
 
-    gift3D.classList.add("open");
+const giftBox = document.getElementById("giftBox");
+
+giftBox.addEventListener("click", () => {
+
+    if (giftBox.classList.contains("open")) return;
+
+    giftBox.classList.add("open");
 
     createGiftHearts();
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
         showScreen("lockScreen");
 
-    },1800);
+    }, 1800);
 
 });
-let rotX = -18;
-let rotY = 28;
-
-let dragging = false;
-let startX = 0;
-let startY = 0;
-
-gift3D.style.transform =
-`rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-
-function beginDrag(x,y){
-
-    dragging = true;
-
-    startX = x;
-
-    startY = y;
-
-}
-
-function dragMove(x,y){
-
-    if(!dragging) return;
-
-    const dx = x - startX;
-
-    const dy = y - startY;
-
-    rotY += dx * 0.45;
-
-    rotX -= dy * 0.35;
-
-    if(rotX > 35) rotX = 35;
-    if(rotX < -35) rotX = -35;
-
-    gift3D.style.transform =
-    `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-
-    startX = x;
-    startY = y;
-
-}
-
-function endDrag(){
-
-    dragging = false;
-
-}
-
-/* PC */
-
-gift3D.addEventListener("mousedown",(e)=>{
-
-    beginDrag(e.clientX,e.clientY);
-
-});
-
-window.addEventListener("mousemove",(e)=>{
-
-    dragMove(e.clientX,e.clientY);
-
-});
-
-window.addEventListener("mouseup",endDrag);
-
-/* PHONE */
-
-gift3D.addEventListener("touchstart",(e)=>{
-
-    const t = e.touches[0];
-
-    beginDrag(t.clientX,t.clientY);
-
-},{passive:true});
-
-window.addEventListener("touchmove",(e)=>{
-
-    if(!dragging) return;
-
-    const t = e.touches[0];
-
-    dragMove(t.clientX,t.clientY);
-
-},{passive:true});
-
-window.addEventListener("touchend",endDrag);
 /*==========================
 FLOATING HEARTS
 ==========================*/
@@ -234,13 +155,10 @@ document.createElement("div");
 
 heart.className="heart";
 
-heart.innerHTML=
+const emojis = ["❤️","💖","✨","🎉","🌸"];
 
-Math.random()>.5
-?
-"❤️"
-:
-"✨";
+heart.innerHTML =
+emojis[Math.floor(Math.random()*emojis.length)];
 
 heart.style.left=
 
@@ -520,6 +438,8 @@ document.getElementById("heartLayer");
 
 function spawnHeart(){
 
+    if(document.hidden) return;
+
 const heart=
 
 document.createElement("div");
@@ -556,7 +476,13 @@ heart.remove();
 
 }
 
-setInterval(spawnHeart,700);
+const isMobile =
+window.matchMedia("(max-width:768px)").matches;
+
+setInterval(
+    spawnHeart,
+    isMobile ? 1600 : 700
+);
 /*==========================
 GALLERY
 ==========================*/
@@ -574,14 +500,14 @@ let currentSlide=0;
 
 function updateGallery(){
 
-galleryTrack.scrollTo({
+const card = galleryTrack.querySelector(".photoCard");
 
-left:
-currentSlide*368,
-
-behavior:"smooth"
-
-});
+if(card){
+    galleryTrack.scrollTo({
+        left: card.offsetWidth * currentSlide + (16 * currentSlide),
+        behavior: "smooth"
+    });
+}
 
 dots.forEach(dot=>{
 
@@ -598,30 +524,28 @@ dots[currentSlide]
 
 }
 
-galleryTrack.addEventListener("scroll",()=>{
+const card = galleryTrack.querySelector(".photoCard");
 
-const index=
 
-Math.round(
+galleryTrack.addEventListener("scroll", ()=>{
 
-galleryTrack.scrollLeft/
-368
+    let galleryTimer;
+    
+if(!card)
 
+return;
+
+const index = Math.round(
+    galleryTrack.scrollLeft /
+    (card.offsetWidth + 16)
 );
 
-currentSlide=index;
+currentSlide = index;
 
-dots.forEach(dot=>{
-
-dot.classList.remove("active");
-
-});
+dots.forEach(dot=>dot.classList.remove("active"));
 
 if(dots[index]){
-
-dots[index]
-.classList.add("active");
-
+    dots[index].classList.add("active");
 }
 
 });
@@ -685,80 +609,56 @@ showScreen("balloonScreen");
 BALLOON GAME
 ==========================*/
 
-const balloons =
-document.querySelectorAll(".balloon");
+const balloons = document.querySelectorAll(".balloon");
 
-const wishCard =
-document.getElementById("wishCard");
+const wishPopup = document.getElementById("wishPopup");
+const wishText = document.getElementById("wishText");
+const nextWishBtn = document.getElementById("nextWishBtn");
 
-const balloonProgress =
-document.getElementById("balloonProgress");
+const balloonCount = document.getElementById("balloonCount");
+const balloonNext = document.getElementById("balloonNext");
 
-const balloonNext =
-document.getElementById("balloonNext");
+let poppedCount = 0;
 
-let poppedCount=0;
+balloons.forEach(balloon => {
 
-balloons.forEach(balloon=>{
+    balloon.onclick = () => {
 
-balloon.onclick=()=>{
+        if (balloon.classList.contains("pop")) return;
 
-if(balloon.classList.contains("pop"))
-return;
+        balloon.classList.add("pop");
 
-balloon.classList.add("pop");
+        popBurst(balloon);
 
-poppedCount++;
+        poppedCount++;
 
-wishCard.innerHTML=
+        balloonCount.innerHTML =
+        `Popped ${poppedCount} / ${balloons.length}`;
 
-balloon.dataset.message;
+        wishText.innerHTML =
+        balloon.dataset.message;
 
-balloonProgress.innerHTML=
+        wishPopup.classList.add("show");
 
-`${poppedCount} / ${balloons.length} Popped`;
+        if (poppedCount === balloons.length) {
 
-popBurst(balloon);
+            balloonNext.style.display = "inline-flex";
 
-if(poppedCount===balloons.length){
+        }
 
-setTimeout(()=>{
-
-balloonNext.style.display=
-
-"inline-flex";
-
-balloonNext.animate([
-
-{
-opacity:0,
-transform:"translateY(30px)"
-},
-
-{
-opacity:1,
-transform:"translateY(0)"
-}
-
-],{
-
-duration:500,
-
-fill:"forwards"
+    };
 
 });
 
-},500);
+nextWishBtn.onclick = () => {
 
-}
+    wishPopup.classList.remove("show");
 
 };
 
-});
+balloonNext.onclick = () => {
 
-balloonNext.onclick=()=>{
-
-showScreen("puzzleScreen");
+    showScreen("puzzleScreen");
 
 };
 
@@ -1070,7 +970,7 @@ volume+=data[i];
 
 volume/=data.length;
 
-if(volume>28){
+if(volume>20){
 
 finishCake();
 
@@ -1129,6 +1029,11 @@ fill:"forwards"
 });
 
 setTimeout(()=>{
+
+    window.scrollTo({
+    top:0,
+    behavior:"instant"
+});
 
 showScreen("scratchScreen");
 
@@ -1242,39 +1147,26 @@ checkScratch();
 
 );
 
-scratchCanvas.addEventListener(
+scratchCanvas.addEventListener("pointermove",(e)=>{
 
-"pointermove",
+    if(!scratching) return;
 
-e=>{
+    e.preventDefault();
 
-if(!scratching) return;
+    const rect = scratchCanvas.getBoundingClientRect();
 
-const rect=
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    28,
+    ctx.beginPath();
+    ctx.arc(x, y, 40, 0, Math.PI * 2);
+    ctx.fill();
 
-scratchCanvas.getBoundingClientRect();
+    ctx.beginPath();
+    ctx.arc(x, y, 28, 0, Math.PI * 2);
+    ctx.fill();
 
-ctx.beginPath();
-
-ctx.arc(
-
-e.clientX-rect.left,
-
-e.clientY-rect.top,
-
-28,
-
-0,
-
-Math.PI*2
-
-);
-
-ctx.fill();
-
-}
-
-);
+});
 
 function checkScratch(){
 
@@ -1365,14 +1257,12 @@ LETTER
 ==========================*/
 
 const envelope = document.getElementById("envelope");
-const letterPaper = document.getElementById("letterPaper");
+const envLetter = document.querySelector(".envLetter");
 const typedLetter = document.getElementById("typedLetter");
 const celebrateBtn = document.getElementById("celebrateBtn");
 const skipTyping = document.getElementById("skipTyping");
 
 const message = `Dear Momo ❤️
-
-Dear Momo ❤️
 
 Happy 20th Birthday.
 
@@ -1415,39 +1305,49 @@ let typingTimer = null;
 
 envelope.onclick = () => {
 
+    if (reading) return;
+
     if (!opened) {
 
         opened = true;
-
         envelope.classList.add("open");
 
-        return;
+        setTimeout(() => {
 
-    }
+            reading = true;
 
-};
+            typedLetter.innerHTML = "";
+            typingIndex = 0;
 
-letterPaper.onclick = () => {
+            celebrateBtn.style.display = "none";
+            skipTyping.style.display = "inline-flex";
 
-    if (!opened) return;
+envLetter.style.transition = "all .6s ease";
 
-    if (reading) return;
+envLetter.style.width = "90vw";
+envLetter.style.maxWidth = "650px";
+envLetter.style.height = "80vh";
 
-    reading = true;
+envLetter.style.left = "50%";
+envLetter.style.top = "50%";
+envLetter.style.bottom = "auto";
 
-    letterPaper.classList.add("fullscreen");
+envLetter.style.transform =
+"translate(-50%,-50%) scale(1)";
 
-    typedLetter.innerHTML = "";
+envLetter.style.zIndex = "9999";
 
-    typingIndex = 0;
-
-    celebrateBtn.style.display = "none";
-
-    skipTyping.style.display = "inline-flex";
+setTimeout(() => {
 
     typeLetter();
 
-};
+}, 600);
+
+        }, 700);
+
+    }
+
+};;
 
 function typeLetter() {
 
