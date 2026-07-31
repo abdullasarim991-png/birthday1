@@ -129,56 +129,52 @@ Open Surprise ✨
 
 
 <section id="giftScreen" class="screen">
-    
-    <div class="giftPage">
 
-        <div id="gift3D">
+    <div class="giftContainer">
 
-            <div class="giftGlow"></div>
+        <div class="giftGlow"></div>
 
-            <div class="giftBox">
+        <h1 class="giftHeading">
+            A Surprise Awaits You ✨
+        </h1>
 
-                <div class="giftFace front">
-                    <div class="ribbonV"></div>
-                    <div class="ribbonH"></div>
-                </div>
+        <p class="giftSubHeading">
+            Something special is waiting just for you ❤️
+        </p>
 
-                <div class="giftFace back"></div>
-
-                <div class="giftFace left"></div>
-
-                <div class="giftFace right"></div>
-
-                <div class="giftFace top"></div>
-
-                <div class="giftFace bottom"></div>
-
-            </div>
+        <div id="giftBox">
 
             <div class="giftLid">
 
-                <div class="lidTop"></div>
+                <div class="giftRibbonVertical"></div>
+                <div class="giftRibbonHorizontal"></div>
 
-                <div class="bow">
+                <div class="giftBow">
 
-                    <span class="loop left"></span>
+                    <span class="bowLeft"></span>
 
-                    <span class="loop right"></span>
+                    <span class="bowRight"></span>
 
-                    <span class="knot"></span>
+                    <span class="bowCenter"></span>
 
                 </div>
 
             </div>
 
+            <div class="giftBody">
+
+                <div class="giftRibbonVertical"></div>
+
+                <div class="giftRibbonHorizontal"></div>
+
+            </div>
+
+            <div class="giftShadow"></div>
+
         </div>
 
-        <h2 class="giftTitle">
-            Tap The Gift 🎁
-        </h2>
-
-        <p class="giftDesc">
-            A little surprise is waiting for you...
+        <p class="giftTap">
+            🎁 Tap the Gift to Open 🎁
         </p>
 
     </div>
@@ -304,7 +300,7 @@ Momo ❤️
 
 <p>
 Today is all about you.
-I made this little surprise with lots of love.
+I made this little surprise to celebrate your special day. 
 I hope this journey makes you smile.
 </p>
 
@@ -461,87 +457,119 @@ Next ❤️
 </section>
 <!-- BALLOON WISHES -->
 
-<section
-id="balloonScreen"
-class="screen">
+<!-- BALLOON SCREEN -->
 
-<div class="balloonBackground"></div>
+<section id="balloonScreen" class="screen">
 
-<h1>
-Pop Every Balloon 🎈
-</h1>
+    <div class="balloonPage">
 
-<p>
-Every balloon hides a special birthday wish.
-Pop all balloons to continue.
-</p>
+        <div class="balloonHeader">
 
-<div
-id="balloonContainer">
+            <div class="balloonEmoji">🎈</div>
 
-<div
-class="balloon pink"
-data-message="May Allah always keep you smiling ❤️">
-🎈
-</div>
+            <h1 class="balloonTitle">
+                Pop the Wishes
+            </h1>
 
-<div
-class="balloon blue"
-data-message="May every dream of yours come true ✨">
-🎈
-</div>
+            <p class="balloonSub">
+                Tap each balloon to reveal a special birthday wish ❤️
+            </p>
 
-<div
-class="balloon purple"
-data-message="Stay happy and blessed forever 🌸">
-🎈
-</div>
+        </div>
 
-<div
-class="balloon yellow"
-data-message="Keep shining wherever you go 💛">
-🎈
-</div>
+        <div class="balloonArea">
 
-<div
-class="balloon red"
-data-message="Never stop smiling 😊">
-🎈
-</div>
+            <div class="balloon pink"
+                data-message="May Allah always keep you smiling ❤️">
 
-<div
-class="balloon green"
-data-message="Happy 20th Birthday Momo 🎂❤️">
-🎈
-</div>
+                <div class="shine"></div>
+                <div class="string"></div>
 
-</div>
+            </div>
 
-<div
-id="wishCard">
+            <div class="balloon orange"
+                data-message="May every dream of yours come true ✨">
 
-Tap any balloon ❤️
+                <div class="shine"></div>
+                <div class="string"></div>
 
-</div>
+            </div>
 
-<div
-id="balloonProgress">
+            <div class="balloon blue"
+                data-message="Stay happy and blessed forever 🌸">
 
-0 / 6 Popped
+                <div class="shine"></div>
+                <div class="string"></div>
 
-</div>
+            </div>
 
-<button
-id="balloonNext"
-class="primaryBtn"
-style="display:none;">
+            <div class="balloon purple"
+                data-message="Keep shining wherever you go 💛">
 
-Continue ❤️
+                <div class="shine"></div>
+                <div class="string"></div>
 
-</button>
+            </div>
+
+            <div class="balloon green"
+                data-message="Never stop smiling 😊">
+
+                <div class="shine"></div>
+                <div class="string"></div>
+
+            </div>
+
+            <div class="balloon red"
+                data-message="Happy 20th Birthday Momo 🎂❤️">
+
+                <div class="shine"></div>
+                <div class="string"></div>
+
+            </div>
+
+        </div>
+
+        <div class="balloonCounter">
+
+            <span id="balloonCount">
+                Popped 0 / 6
+            </span>
+
+        </div>
+
+        <div id="wishPopup">
+
+            <div class="wishCard">
+
+                <h3>💖</h3>
+
+                <p id="wishText">
+                </p>
+
+                <button
+                    id="nextWishBtn"
+                    class="primaryBtn">
+
+                    Continue
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <button
+            id="balloonNext"
+            class="primaryBtn"
+            style="display:none;">
+
+            Continue ❤️
+
+        </button>
+
+    </div>
 
 </section>
-
 <!-- PUZZLE -->
 
 <section
@@ -752,65 +780,60 @@ Read My Letter 💌
 
 </section>
 <!-- LETTER SCREEN -->
+<section id="letterScreen" class="screen">
 
-<section
-id="letterScreen"
-class="screen">
+    <button class="backBtn" onclick="showScreen('heroScreen')">
+        ← Home
+    </button>
 
-<div class="letterOverlay"></div>
+    <div class="letterWrapper">
 
-<div class="floatingHearts"></div>
+        <div class="letterIcon">
+            💌
+        </div>
 
-<h1 class="letterTitle">
-A Letter Just For You 💌
-</h1>
+        <h1 class="letterHeading">
+            A Letter Just For You
+        </h1>
 
-<p class="tapText">
-Tap the envelope to open it
-</p>
+        <p class="letterHint">
+            Tap the envelope to open ❤️
+        </p>
 
-<div class="letterArea">
+        <div id="envelope">
 
-<div id="envelope">
+            <div class="envBack"></div>
 
-    <div class="envelopeShadow"></div>
+            <div class="envLetter">
 
-    <div class="envelopeBack"></div>
+                <div id="typedLetter"></div>
 
-    <div
-        class="letterPaper"
-        id="letterPaper">
+            </div>
 
-        <h2>Dear Momo ❤️</h2>
+            <div class="envFront"></div>
 
-        <div id="typedLetter"></div>
+            <div class="envFlap"></div>
+
+            <div class="envSeal">
+                ❤
+            </div>
+
+        </div>
+
+        <button id="skipTyping" class="secondaryBtn" style="display:none;">
+            Skip Typing
+        </button>
+
+        <button id="celebrateBtn"
+                class="primaryBtn"
+                style="display:none;">
+            Continue ❤️
+        </button>
 
     </div>
 
-    <div class="envelopeFront"></div>
-
-    <div class="envelopeFlap"></div>
-
-</div>
-
-<button
-id="skipTyping"
-class="secondaryBtn">
-
-Skip Typing
-
-</button>
-
-<button
-id="celebrateBtn"
-class="primaryBtn"
-style="display:none;">
-
-Continue ❤️
-
-</button>
-
 </section>
+
 
 <!-- FINAL SCREEN -->
 
