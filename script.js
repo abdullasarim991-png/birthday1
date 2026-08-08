@@ -1306,39 +1306,43 @@ const skipTyping = document.getElementById("skipTyping");
 
 const message = `Dear Momo ❤️
 
-Happy 20th Birthday.
+Happy 20th Birthday
 
-Sach kahau, mujhe kabhi words itne achhe se use karna nahi aaya.
-Isliye jo likh raha hoon, woh sirf kidney se likh raha hoon.
+Sach kahau mujhe kabhi words itne achhe se use karna nahi aaya
+Isliye jo likh raha hoon woh sirf kidney se likh raha hoon 😭
 
-Allah kare tumhari zindagi hamesha khushiyon se bhari rahe.
-Har dua qubool ho, har sapna poora ho,
-aur tum hamesha isi tarah haste muskuraate raho.
+Allah kare tumhari zindagi hamesha khushiyon se bhari rahe
+Har dua qubool ho har sapna poora ho
+aur tum hamesha isi tarah haste muskuraate raho
 
-Thank you... mere saath itni pyari memories banane ke liye.
-Chahe woh chhoti si baatein ho,
-hasi-mazaak ho,
-ya sirf ek normal sa din,
-mere liye woh sab hamesha special rahenge.
+Thank you mere saath itni pyari memories banane ke liye
+Chahe woh chhoti si baatein ho
+hasi mazaak ho
+ya sirf ek normal sa din
+mere liye woh sab hamesha special rahenge
 
-Aur ek baat...
-Tumhari brown eyes ki tareef shayad words mein kabhi poori nahi ho sakti.
-Jab un par dhoop padti hai,
-toh woh aur bhi khoobsurat lagti hain.
-Sach mein, woh tumhari sabse pyari cheezon mein se ek hain.
+Aur ek baat
+Tumhari brown eyes ki tareef shayad words mein kabhi poori nahi ho sakti
+Jab un par dhoop padti hai
+toh woh aur bhi khoobsurat lagti hain
+Sach mein woh tumhari sabse pyari cheezon mein se ek hain
 
-Bas ek hi dua hai...
-Allah tumhe hamesha apni hifazat mein rakhe,
-tumhari har muskurahat hamesha salamat rahe,
-aur tumhari zindagi mein kabhi kisi cheez ki kami na ho.
+Aur haan Rabbit ji 🐰
+Apne woh cute se teeth ki wajah se jo naam mila hai na woh bhi kabhi mat badalna 😂
+Waise bhi Rabbit ji wali smile tum par hi suit karti hai
 
-Thank you... sirf memories ke liye nahi,
-balki woh insaan hone ke liye jo tum ho.
+Bas ek hi dua hai
+Allah tumhe hamesha apni hifazat mein rakhe
+tumhari har muskurahat hamesha salamat rahe
+aur tumhari zindagi mein kabhi kisi cheez ki kami na ho
 
-Once again,
+Thank you sirf memories ke liye nahi
+balki woh insaan hone ke liye jo tum ho
 
-Happy 20th Birthday, Momo. ❤️
-May Allah always keep you smiling.`;
+Once again
+
+Happy 20th Birthday Momo ❤️
+May Allah always keep you smiling`;
 
 let opened = false;
 let reading = false;
