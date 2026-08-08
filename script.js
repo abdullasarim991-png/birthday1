@@ -1429,6 +1429,6 @@ skipTyping.onclick = () => {
 
 celebrateBtn.onclick = () => {
 
-    showScreen("cakeScreen");
+    showScreen("endScreen");
 
 };
